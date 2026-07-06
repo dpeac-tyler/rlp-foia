@@ -100,6 +100,12 @@
         </ol>
       </nav>
 
+      <div id="package-created-alert" class="usa-alert usa-alert--info margin-top-2" hidden>
+        <div class="usa-alert__body">
+          <p class="usa-alert__text" id="package-created-alert-text"></p>
+        </div>
+      </div>
+
       <h1 class="page-title page-title--underlined">All FOIA Packages</h1>
 
       <div class="margin-top-2">
@@ -194,6 +200,65 @@
         </table>
       </div>
     </main>
+
+    <!-- Success Notification -->
+    <div id="success-notification" class="notification" hidden>
+      <svg class="notification-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" fill="#00a91c" stroke="#00a91c" stroke-width="2"/>
+        <path d="M7 13l3 3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="notification-text" id="success-notification-text"></span>
+    </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var stored = sessionStorage.getItem('newFoiaPackage');
+      if (!stored) return;
+      sessionStorage.removeItem('newFoiaPackage');
+      var data = JSON.parse(stored);
+
+      // Persistent info alert
+      document.getElementById('package-created-alert-text').textContent =
+        data.packageNumber + ' has been created for ' + data.subjectName +
+        ' and collection has been triggered. Records may take a few minutes to collect.';
+      document.getElementById('package-created-alert').removeAttribute('hidden');
+
+      // Add new row to the table
+      var tbody = document.querySelector('.usa-table tbody');
+      var row = document.createElement('tr');
+      row.innerHTML =
+        '<td>' + data.packageNumber + '</td>' +
+        '<td>' + data.subjectName + '</td>' +
+        '<td>' + data.subjectType + '</td>' +
+        '<td>Collecting</td>' +
+        '<td>' + data.createdDate + '</td>';
+      tbody.insertBefore(row, tbody.firstChild);
+
+      var rowCount = tbody.querySelectorAll('tr').length;
+      document.querySelector('.table-controls__left strong').textContent =
+        'Showing 1 - ' + rowCount + ' of ' + rowCount + ' Entries';
+
+      // Fly-in success notification
+      var notification = document.getElementById('success-notification');
+      document.getElementById('success-notification-text').textContent =
+        'Package ' + data.packageNumber + ' created successfully.';
+      notification.removeAttribute('hidden');
+
+      setTimeout(function () {
+        notification.classList.add('show');
+      }, 10);
+
+      setTimeout(function () {
+        notification.classList.remove('show');
+        notification.classList.add('hide');
+
+        setTimeout(function () {
+          notification.classList.remove('hide');
+          notification.setAttribute('hidden', '');
+        }, 400);
+      }, 4000);
+    });
+  </script>
 </body>
 </html>

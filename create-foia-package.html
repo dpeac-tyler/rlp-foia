@@ -220,7 +220,7 @@
                     <td>Professional Engineer</td>
                     <td><span class="status-badge status-active">Active</span></td>
                     <td>
-                      <a href="#" class="icon-button" aria-label="Select Individual">
+                      <a href="#" class="icon-button select-individual-btn" data-subject-name="Smith, John A" aria-label="Select Individual">
                         <img src="assets/select-icon.png" alt="" width="30" height="30">
                       </a>
                     </td>
@@ -231,7 +231,7 @@
                     <td>Fishing Guide Permit</td>
                     <td><span class="status-badge status-active">Active</span></td>
                     <td>
-                      <a href="#" class="icon-button" aria-label="Select Individual">
+                      <a href="#" class="icon-button select-individual-btn" data-subject-name="Alvarez, Maria T" aria-label="Select Individual">
                         <img src="assets/select-icon.png" alt="" width="30" height="30">
                       </a>
                     </td>
@@ -242,7 +242,7 @@
                     <td>Wildlife Rehabilitator</td>
                     <td><span class="status-badge status-expired">Expired</span></td>
                     <td>
-                      <a href="#" class="icon-button" aria-label="Select Individual">
+                      <a href="#" class="icon-button select-individual-btn" data-subject-name="Bell, Robert" aria-label="Select Individual">
                         <img src="assets/select-icon.png" alt="" width="30" height="30">
                       </a>
                     </td>
@@ -253,7 +253,7 @@
                     <td>Real Estate Salesperson</td>
                     <td><span class="status-badge status-inactive">Inactive</span></td>
                     <td>
-                      <a href="#" class="icon-button" aria-label="Select Individual">
+                      <a href="#" class="icon-button select-individual-btn" data-subject-name="Nguyen, Linh" aria-label="Select Individual">
                         <img src="assets/select-icon.png" alt="" width="30" height="30">
                       </a>
                     </td>
@@ -264,7 +264,7 @@
                     <td>Cosmetologist</td>
                     <td><span class="status-badge status-active">Active</span></td>
                     <td>
-                      <a href="#" class="icon-button" aria-label="Select Individual">
+                      <a href="#" class="icon-button select-individual-btn" data-subject-name="Carter, William J" aria-label="Select Individual">
                         <img src="assets/select-icon.png" alt="" width="30" height="30">
                       </a>
                     </td>
@@ -281,6 +281,48 @@
         <a href="foia-packages.html" class="usa-button usa-button--secondary" id="cancel-button">Cancel</a>
       </div>
     </main>
+
+    <!-- Affiliated Subjects Modal -->
+    <div id="affiliated-subjects-modal" class="modal" hidden>
+      <div class="modal-overlay"></div>
+      <div class="modal-content" style="max-width: 1000px;">
+        <div class="modal-header">
+          <h2 class="modal-title">Affiliated Subjects</h2>
+          <button type="button" class="modal-close" aria-label="Close modal" id="affiliated-subjects-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="margin-bottom-2">
+            <p class="margin-0"><strong id="affiliated-subjects-name-label">Individual Name:</strong> <span id="affiliated-subjects-name"></span></p>
+            <p class="margin-0" id="affiliated-subjects-date-range-line" hidden><strong>Date Range:</strong> <span id="affiliated-subjects-date-range"></span></p>
+          </div>
+          <p class="margin-bottom-2">Affiliations outside the date range are unchecked by default.</p>
+          <p id="affiliated-subjects-empty" hidden>No affiliations found for this individual.</p>
+          <div id="affiliated-subjects-results" style="max-height: 320px; overflow-y: auto; border: 1px solid #dfe1e2;">
+            <table class="usa-table usa-table--borderless usa-table--striped" style="width: 100%; margin: 0;">
+              <thead>
+                <tr>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Select</th>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Affiliated Subject</th>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Relationship</th>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Active Dates</th>
+                </tr>
+              </thead>
+              <tbody id="affiliated-subjects-tbody"></tbody>
+            </table>
+          </div>
+          <p class="margin-top-2 margin-0"><strong id="affiliated-subjects-selected-count">0 Affiliations Selected</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="usa-button" id="create-package-btn">Create Package</button>
+          <button type="button" class="usa-button usa-button--secondary" id="affiliated-subjects-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -325,6 +367,155 @@
     document.getElementById('subject-search-clear').addEventListener('click', function () {
       document.getElementById('subject-search').value = '';
       document.getElementById('individual-results').setAttribute('hidden', '');
+    });
+
+    // Affiliated Subjects modal
+    var affiliationsData = {
+      'Smith, John A': [
+        { name: 'Smith & Associates Consulting', relationship: 'Superior', activeDates: '05/05/2021 - present' },
+        { name: 'Smith, Karen L', relationship: 'Subordinate', activeDates: '03/04/2019 - 06/25/2022' }
+      ],
+      'Alvarez, Maria T': [
+        { name: 'Alvarez Outdoor Guiding LLC', relationship: 'Superior', activeDates: '01/10/2020 - present' }
+      ],
+      'Bell, Robert': [],
+      'Nguyen, Linh': [
+        { name: 'Heartland Realty Group', relationship: 'Superior', activeDates: '06/15/2018 - present' },
+        { name: 'Nguyen, Thu', relationship: 'Subordinate', activeDates: '09/01/2020 - 12/31/2023' },
+        { name: 'Nguyen Family Trust', relationship: 'Superior', activeDates: '02/20/2017 - present' }
+      ],
+      'Carter, William J': []
+    };
+
+    var affiliatedSubjectsModal = document.getElementById('affiliated-subjects-modal');
+    var affiliatedSubjectsResults = document.getElementById('affiliated-subjects-results');
+    var affiliatedSubjectsEmpty = document.getElementById('affiliated-subjects-empty');
+    var affiliatedSubjectsTbody = document.getElementById('affiliated-subjects-tbody');
+    var affiliatedSubjectsSelectedCount = document.getElementById('affiliated-subjects-selected-count');
+    var currentSubjectName = '';
+    var currentSubjectType = 'Individual';
+
+    function updateAffiliatedSubjectsSelectedCount() {
+      var count = document.querySelectorAll('.affiliation-checkbox:checked').length;
+      affiliatedSubjectsSelectedCount.textContent = count === 1 ? '1 Affiliation Selected' : count + ' Affiliations Selected';
+    }
+
+    function parseDate(str) {
+      if (!str) return null;
+      var parts = str.split('/');
+      if (parts.length !== 3) return null;
+      return new Date(parseInt(parts[2], 10), parseInt(parts[0], 10) - 1, parseInt(parts[1], 10));
+    }
+
+    function parseActiveDates(activeDatesStr) {
+      var parts = activeDatesStr.split(' - ');
+      var start = parseDate(parts[0].trim());
+      var endStr = parts[1] ? parts[1].trim() : '';
+      var end = (!endStr || endStr.toLowerCase() === 'present') ? null : parseDate(endStr);
+      return { start: start, end: end };
+    }
+
+    function isAffiliationInRange(activeDatesStr, fromDate, toDate) {
+      if (!fromDate && !toDate) return true;
+      var period = parseActiveDates(activeDatesStr);
+      if (toDate && period.start && period.start > toDate) return false;
+      if (fromDate && period.end && period.end < fromDate) return false;
+      return true;
+    }
+
+    function formatDateRangeText(fromVal, toVal) {
+      if (fromVal && toVal) return fromVal + ' - ' + toVal;
+      if (fromVal) return fromVal + ' - present';
+      return 'Through ' + toVal;
+    }
+
+    function renderAffiliatedSubjects(subjectName) {
+      var subjectType = document.querySelector('input[name="subject-type"]:checked');
+      currentSubjectName = subjectName;
+      currentSubjectType = (subjectType && subjectType.value === 'business') ? 'Business' : 'Individual';
+
+      document.getElementById('affiliated-subjects-name-label').textContent =
+        currentSubjectType === 'Business' ? 'Business Name:' : 'Individual Name:';
+      document.getElementById('affiliated-subjects-name').textContent = subjectName;
+
+      var fromVal = document.getElementById('date-range-from').value.trim();
+      var toVal = document.getElementById('date-range-to').value.trim();
+      var dateRangeLine = document.getElementById('affiliated-subjects-date-range-line');
+
+      if (fromVal || toVal) {
+        document.getElementById('affiliated-subjects-date-range').textContent = formatDateRangeText(fromVal, toVal);
+        dateRangeLine.removeAttribute('hidden');
+      } else {
+        dateRangeLine.setAttribute('hidden', '');
+      }
+
+      var fromDate = parseDate(fromVal);
+      var toDate = parseDate(toVal);
+
+      var affiliations = affiliationsData[subjectName] || [];
+      affiliatedSubjectsTbody.innerHTML = '';
+
+      if (affiliations.length === 0) {
+        affiliatedSubjectsResults.setAttribute('hidden', '');
+        affiliatedSubjectsEmpty.removeAttribute('hidden');
+      } else {
+        affiliatedSubjectsEmpty.setAttribute('hidden', '');
+        affiliatedSubjectsResults.removeAttribute('hidden');
+
+        affiliations.forEach(function (affiliation, i) {
+          var inRange = isAffiliationInRange(affiliation.activeDates, fromDate, toDate);
+          var row = document.createElement('tr');
+          row.innerHTML =
+            '<td><input type="checkbox" class="affiliation-checkbox" data-index="' + i + '" aria-label="Select ' + affiliation.name + '"' + (inRange ? ' checked' : '') + ' style="width: 1.8rem; height: 1.8rem; cursor: pointer;"></td>' +
+            '<td>' + affiliation.name + '</td>' +
+            '<td>' + affiliation.relationship + '</td>' +
+            '<td>' + affiliation.activeDates + '</td>';
+          affiliatedSubjectsTbody.appendChild(row);
+        });
+
+        document.querySelectorAll('.affiliation-checkbox').forEach(function (checkbox) {
+          checkbox.addEventListener('change', updateAffiliatedSubjectsSelectedCount);
+        });
+      }
+
+      updateAffiliatedSubjectsSelectedCount();
+    }
+
+    function closeAffiliatedSubjectsModal() {
+      affiliatedSubjectsModal.setAttribute('hidden', '');
+    }
+
+    document.querySelectorAll('.select-individual-btn').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        renderAffiliatedSubjects(this.getAttribute('data-subject-name'));
+        affiliatedSubjectsModal.removeAttribute('hidden');
+      });
+    });
+
+    document.getElementById('affiliated-subjects-close').addEventListener('click', closeAffiliatedSubjectsModal);
+    document.getElementById('affiliated-subjects-cancel').addEventListener('click', closeAffiliatedSubjectsModal);
+    affiliatedSubjectsModal.querySelector('.modal-overlay').addEventListener('click', closeAffiliatedSubjectsModal);
+
+    // Create Package
+    document.getElementById('create-package-btn').addEventListener('click', function () {
+      var counter = parseInt(sessionStorage.getItem('foiaPackageCounter') || '5', 10);
+      counter++;
+      sessionStorage.setItem('foiaPackageCounter', counter);
+      var packageNumber = 'FOIA-' + String(counter).padStart(3, '0');
+
+      var today = new Date();
+      var createdDate = String(today.getMonth() + 1).padStart(2, '0') + '/' +
+                         String(today.getDate()).padStart(2, '0') + '/' + today.getFullYear();
+
+      sessionStorage.setItem('newFoiaPackage', JSON.stringify({
+        packageNumber: packageNumber,
+        subjectName: currentSubjectName,
+        subjectType: currentSubjectType,
+        createdDate: createdDate
+      }));
+
+      window.location.href = 'foia-packages.html';
     });
   </script>
 </body>
