@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FOIA Packages - RLP</title>
+  <title>Create FOIA Package - RLP</title>
 <!-- Custom RLP Styles -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
@@ -94,104 +94,42 @@
           <li class="usa-breadcrumb__list-item">
             <a href="metrics.html" class="usa-breadcrumb__link">Metrics</a>
           </li>
+          <li class="usa-breadcrumb__list-item">
+            <a href="foia-packages.html" class="usa-breadcrumb__link">FOIA Packages</a>
+          </li>
           <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-            <span>FOIA Packages</span>
+            <span>Create FOIA Package</span>
           </li>
         </ol>
       </nav>
 
-      <h1 class="page-title page-title--underlined">All FOIA Packages</h1>
-
-      <div class="margin-top-2">
-        <a href="create-foia-package.html" class="usa-button">Create FOIA Package</a>
+      <div class="profile-header">
+        <h1 class="profile-header__title">Create FOIA Package</h1>
       </div>
 
-      <div class="margin-top-2">
-        <div class="grid-row grid-gap-2">
-          <div class="grid-col-5">
-            <label class="usa-label" for="search-by">Search By</label>
-            <select class="usa-select" id="search-by" name="search-by">
-              <option value="">Please Select</option>
-              <option value="constituent-name">Constituent Name</option>
-              <option value="status">Status</option>
-            </select>
+      <div class="profile-content">
+        <div class="inspection-content">
+          <div class="margin-bottom-4">
+            <fieldset class="usa-fieldset">
+              <legend class="usa-legend">Subject Type <span class="field-required">Required</span></legend>
+              <div class="radio-group-inline">
+                <div class="usa-radio">
+                  <input class="usa-radio__input" id="subject-type-individual" type="radio" name="subject-type" value="individual">
+                  <label class="usa-radio__label" for="subject-type-individual">Individual</label>
+                </div>
+                <div class="usa-radio">
+                  <input class="usa-radio__input" id="subject-type-business" type="radio" name="subject-type" value="business">
+                  <label class="usa-radio__label" for="subject-type-business">Business</label>
+                </div>
+              </div>
+            </fieldset>
           </div>
-          <div class="grid-col-5" style="flex: 1 1 auto; width: auto;">
-            <label class="usa-label" for="search-term">Search</label>
-            <input class="usa-input" id="search-term" name="search-term" type="text">
-          </div>
-        </div>
-
-        <div class="margin-top-2">
-          <button type="button" class="usa-button">Search</button>
-          <button type="button" class="usa-button usa-button--outline">Clear</button>
         </div>
       </div>
 
       <div class="margin-top-2">
-        <div class="table-controls">
-          <div class="table-controls__left">
-            <strong>Showing 1 - 5 of 5 Entries</strong>
-          </div>
-          <div class="table-controls__right">
-            <label for="entries-per-page" class="table-controls__label">Show</label>
-            <select class="usa-select table-controls__select" id="entries-per-page" name="entries-per-page">
-              <option value="100" selected>100</option>
-              <option value="50">50</option>
-              <option value="25">25</option>
-              <option value="10">10</option>
-            </select>
-          </div>
-        </div>
-
-        <table class="usa-table usa-table--borderless usa-table--striped">
-          <thead>
-            <tr>
-              <th scope="col" role="columnheader" aria-sort="none">Package Name <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Type <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Status <span class="sort-arrows"></span></th>
-              <th scope="col" role="columnheader" aria-sort="none">Created Date <span class="sort-arrows"></span></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>FOIA-001</td>
-              <td>Smith, John A</td>
-              <td>Individual</td>
-              <td>Draft</td>
-              <td>06/28/2026</td>
-            </tr>
-            <tr>
-              <td>FOIA-002</td>
-              <td>Ridgeline Construction LLC</td>
-              <td>Business</td>
-              <td>Collecting</td>
-              <td>06/25/2026</td>
-            </tr>
-            <tr>
-              <td>FOIA-003</td>
-              <td>Alvarez, Maria T</td>
-              <td>Individual</td>
-              <td>Ready for Review</td>
-              <td>06/20/2026</td>
-            </tr>
-            <tr>
-              <td>FOIA-004</td>
-              <td>Bell, Robert</td>
-              <td>Individual</td>
-              <td>Exported</td>
-              <td>06/10/2026</td>
-            </tr>
-            <tr>
-              <td>FOIA-005</td>
-              <td>Heartland Grain Co-op</td>
-              <td>Business</td>
-              <td>Closed</td>
-              <td>05/30/2026</td>
-            </tr>
-          </tbody>
-        </table>
+        <button type="button" class="usa-button" id="save-button">Save</button>
+        <a href="foia-packages.html" class="usa-button usa-button--secondary" id="cancel-button">Cancel</a>
       </div>
     </main>
   </div>
