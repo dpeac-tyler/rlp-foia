@@ -1,40 +1,10 @@
-<!-- Pages redeploy trigger -->
-<!-- <div id="gate" style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  z-index: 9999;
-">
-  <h2>Enter password to view prototype</h2>
-  <input type="password" id="pw" style="padding:8px; margin:10px;" />
-  <button onclick="enter()" style="padding:8px 16px;">Enter</button>
-</div>
-
-<script>
-function enter() {
-  if (document.getElementById('pw').value === 'rlp') {
-    document.getElementById('gate').style.display = 'none';
-  } else {
-    alert('Wrong password');
-  }
-}
-</script> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agency Home - RLP</title>
-<!-- Custom RLP Styles -->
+  <title>Metrics - RLP</title>
+  <!-- Custom RLP Styles -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -56,12 +26,12 @@ function enter() {
         <div class="grid-container navigation">
           <div class="grid-row">
             <div class="tablet:grid-col-6 logo-flex">
-              <a class="agency-logo-link" href="#">
+              <a class="agency-logo-link" href="index.html">
                 <img src="assets/il-logo.png"
                      alt="Illinois Department of Natural Resources agency logo"
                      class="agency-logo">
               </a>
-              <a class="agency-name-link" href="#">
+              <a class="agency-name-link" href="index.html">
                 <div class="agency-name">Illinois Department of Natural Resources</div>
               </a>
             </div>
@@ -69,7 +39,7 @@ function enter() {
               <nav class="grid-container">
                 <div class="grid-row header--nav-links">
                   <div class="tablet:grid-col nav__item">
-                    <a class="usa-link" href="#">
+                    <a class="usa-link" href="index.html">
                       <img src="assets/rlp-logo.png"
                            alt="RLP logo"
                            class="margin-right-1"
@@ -119,81 +89,58 @@ function enter() {
     </nav>
 
     <main id="main-content" class="grid-container">
-      <h1 class="page-title page-title--underlined">Agency Homepage</h1>
+      <nav class="usa-breadcrumb margin-top-2" aria-label="Breadcrumbs">
+        <ol class="usa-breadcrumb__list">
+          <li class="usa-breadcrumb__list-item">
+            <a href="index.html" class="usa-breadcrumb__link">Home</a>
+          </li>
+          <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+            <span>Metrics</span>
+          </li>
+        </ol>
+      </nav>
 
-      <div class="agency-home-cards grid-row grid-gap-2 margin-top-2 minh-card-lg">
-        <!-- Card 1: Create Constituent Account -->
+      <h1 class="page-title page-title--underlined">Metrics</h1>
+
+      <div class="grid-row grid-gap-2 margin-top-4">
+        <!-- Card 1: Delete Account -->
         <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
           <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
              href="#"
              style="display:block; text-decoration:none;">
-            <h2 class="font-family-sans text-bold margin-0">Create Constituent Account</h2>
-            <p>Create Constituent Accounts.</p>
+            <h2 class="font-family-sans text-bold margin-0">Delete Account</h2>
+            <p>List of deleted constituent accounts.</p>
           </a>
         </div>
 
-        <!-- Card 2: Submit Constituent Application -->
-        <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <div class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1">
-            <h2 class="font-family-sans text-bold margin-0">Submit Constituent Application</h2>
-            <p>Submit Application on behalf of Constituent</p>
-            <div class="flex flex-1 flex-column flex-justify-end">
-              <div class="grid-row">
-                <div class="tablet:grid-col-6 text-left">
-                  <a class="text-primary" href="#">Start Constituent Submission</a>
-                </div>
-                <div class="tablet:grid-col-6 text-right">
-                  <a class="text-primary" href="#">Continue Constituent Submission</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Metrics -->
+        <!-- Card 2: License Export (Batch) -->
         <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
           <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
-             href="metrics.html"
+             href="#"
              style="display:block; text-decoration:none;">
-            <h2 class="font-family-sans text-bold margin-0">Metrics</h2>
-            <p>Click here to view available reports.</p>
+            <h2 class="font-family-sans text-bold margin-0">License Export (Batch)</h2>
+            <p>License information for every issued license period.</p>
           </a>
         </div>
 
-        <!-- Card 4: License Types -->
+        <!-- Card 3: Submission Export (Batch) -->
         <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <div class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1">
-            <h2 class="font-family-sans text-bold margin-0">License Types</h2>
-            <p>Setup licenses for use in applications.</p>
-            <div class="flex flex-1 flex-column flex-justify-end">
-              <div class="grid-row">
-                <div class="tablet:grid-col-6 text-left">
-                  <a class="text-primary" href="#">Create New</a>
-                </div>
-                <div class="tablet:grid-col-6 text-right">
-                  <a class="text-primary" href="#">View All</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
+             href="#"
+             style="display:block; text-decoration:none;">
+            <h2 class="font-family-sans text-bold margin-0">Submission Export (Batch)</h2>
+            <p>Per application version, complete record of data provided by applicants on submissions.</p>
+          </a>
         </div>
 
-        <!-- Card 5: Applications -->
+        <!-- Card 4: FOIA Packages -->
         <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <div class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1">
-            <h2 class="font-family-sans text-bold margin-0">Applications</h2>
-            <p>View your application or use the dropdown below to choose from the preset options list.</p>
-            <div class="flex flex-1 flex-column flex-justify-end">
-              <div class="grid-row">
-                <div class="tablet:grid-col-6 text-left">
-                  <a class="text-primary" href="start-application.html">Start New Application</a>
-                </div>
-                <div class="tablet:grid-col-6 text-right">
-                  <a class="text-primary" href="applications.html">All Applications</a>
-                </div>
-              </div>
-            </div>
-          </div>
+          <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
+             href="#"
+             style="display:block; text-decoration:none;">
+            <h2 class="font-family-sans text-bold margin-0">FOIA Packages</h2>
+            <p>Create, collect, and export records for public-records requests.</p>
+          </a>
         </div>
       </div>
     </main>
