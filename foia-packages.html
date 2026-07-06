@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Metrics - RLP</title>
-  <!-- Custom RLP Styles -->
+  <title>FOIA Packages - RLP</title>
+<!-- Custom RLP Styles -->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -92,56 +92,106 @@
       <nav class="usa-breadcrumb margin-top-2" aria-label="Breadcrumbs">
         <ol class="usa-breadcrumb__list">
           <li class="usa-breadcrumb__list-item">
-            <a href="index.html" class="usa-breadcrumb__link">Home</a>
+            <a href="metrics.html" class="usa-breadcrumb__link">Metrics</a>
           </li>
           <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-            <span>Metrics</span>
+            <span>FOIA Packages</span>
           </li>
         </ol>
       </nav>
 
-      <h1 class="page-title page-title--underlined">Metrics</h1>
+      <h1 class="page-title page-title--underlined">All FOIA Packages</h1>
 
-      <div class="grid-row grid-gap-2 margin-top-4">
-        <!-- Card 1: Delete Account -->
-        <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
-             href="#"
-             style="display:block; text-decoration:none;">
-            <h2 class="font-family-sans text-bold margin-0">Delete Account</h2>
-            <p>List of deleted constituent accounts.</p>
-          </a>
+      <div class="margin-top-2">
+        <button type="button" class="usa-button">Create FOIA Package</button>
+      </div>
+
+      <div class="margin-top-2">
+        <div class="grid-row grid-gap-2">
+          <div class="grid-col-5">
+            <label class="usa-label" for="search-by">Search By</label>
+            <select class="usa-select" id="search-by" name="search-by">
+              <option value="">Please Select</option>
+              <option value="constituent-name">Constituent Name</option>
+              <option value="status">Status</option>
+            </select>
+          </div>
+          <div class="grid-col-5" style="flex: 1 1 auto; width: auto;">
+            <label class="usa-label" for="search-term">Search</label>
+            <input class="usa-input" id="search-term" name="search-term" type="text">
+          </div>
         </div>
 
-        <!-- Card 2: License Export (Batch) -->
-        <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
-             href="#"
-             style="display:block; text-decoration:none;">
-            <h2 class="font-family-sans text-bold margin-0">License Export (Batch)</h2>
-            <p>License information for every issued license period.</p>
-          </a>
+        <div class="margin-top-2">
+          <button type="button" class="usa-button">Search</button>
+          <button type="button" class="usa-button usa-button--outline">Clear</button>
+        </div>
+      </div>
+
+      <div class="margin-top-2">
+        <div class="table-controls">
+          <div class="table-controls__left">
+            <strong>Showing 1 - 5 of 5 Entries</strong>
+          </div>
+          <div class="table-controls__right">
+            <label for="entries-per-page" class="table-controls__label">Show</label>
+            <select class="usa-select table-controls__select" id="entries-per-page" name="entries-per-page">
+              <option value="100" selected>100</option>
+              <option value="50">50</option>
+              <option value="25">25</option>
+              <option value="10">10</option>
+            </select>
+          </div>
         </div>
 
-        <!-- Card 3: Submission Export (Batch) -->
-        <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
-             href="#"
-             style="display:block; text-decoration:none;">
-            <h2 class="font-family-sans text-bold margin-0">Submission Export (Batch)</h2>
-            <p>Per application version, complete record of data provided by applicants on submissions.</p>
-          </a>
-        </div>
-
-        <!-- Card 4: FOIA Packages -->
-        <div class="minh-card-lg margin-top-2 tablet:grid-col-4">
-          <a class="simple-card bg-base-lightest padding-2 height-full display-flex flex-column flex-1"
-             href="foia-packages.html"
-             style="display:block; text-decoration:none;">
-            <h2 class="font-family-sans text-bold margin-0">FOIA Packages</h2>
-            <p>Create, collect, and export records for public-records requests.</p>
-          </a>
-        </div>
+        <table class="usa-table usa-table--borderless usa-table--striped">
+          <thead>
+            <tr>
+              <th scope="col" role="columnheader" aria-sort="none">Package Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Type <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Status <span class="sort-arrows"></span></th>
+              <th scope="col" role="columnheader" aria-sort="none">Created Date <span class="sort-arrows"></span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>FOIA-001</td>
+              <td>Smith, John A</td>
+              <td>Individual</td>
+              <td>Draft</td>
+              <td>06/28/2026</td>
+            </tr>
+            <tr>
+              <td>FOIA-002</td>
+              <td>Ridgeline Construction LLC</td>
+              <td>Business</td>
+              <td>Collecting</td>
+              <td>06/25/2026</td>
+            </tr>
+            <tr>
+              <td>FOIA-003</td>
+              <td>Alvarez, Maria T</td>
+              <td>Individual</td>
+              <td>Ready for Review</td>
+              <td>06/20/2026</td>
+            </tr>
+            <tr>
+              <td>FOIA-004</td>
+              <td>Bell, Robert</td>
+              <td>Individual</td>
+              <td>Exported</td>
+              <td>06/10/2026</td>
+            </tr>
+            <tr>
+              <td>FOIA-005</td>
+              <td>Heartland Grain Co-op</td>
+              <td>Business</td>
+              <td>Closed</td>
+              <td>05/30/2026</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </main>
   </div>
