@@ -169,6 +169,109 @@
               <button type="button" class="usa-button" id="subject-search-button">Search</button>
               <button type="button" class="usa-button usa-button--outline" id="subject-search-clear">Clear</button>
             </div>
+
+            <div id="individual-results" style="margin-top: 20px;" hidden>
+              <div class="usa-accordion usa-accordion--bordered">
+                <h3 class="usa-accordion__heading">
+                  <button type="button" class="usa-accordion__button" aria-expanded="false" aria-controls="individual-results-icon-key-content">
+                    Icon Key
+                  </button>
+                </h3>
+                <div id="individual-results-icon-key-content" class="usa-accordion__content usa-prose" hidden>
+                  <p class="text-bold margin-0 margin-bottom-2">Options and Control Types</p>
+                  <div class="icon-key-grid">
+                    <div class="icon-key-item">
+                      <img src="assets/select-icon.png" alt="" width="24" height="24">
+                      <span>- Select Individual</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="table-controls margin-top-2">
+                <div class="table-controls__left">
+                  <strong>Showing 1 - 5 of 5 Entries</strong>
+                </div>
+                <div class="table-controls__right">
+                  <label for="individual-results-entries-per-page" class="table-controls__label">Show</label>
+                  <select class="usa-select table-controls__select" id="individual-results-entries-per-page" name="individual-results-entries-per-page">
+                    <option value="100" selected>100</option>
+                    <option value="50">50</option>
+                    <option value="25">25</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+              </div>
+
+              <table class="usa-table usa-table--borderless usa-table--striped">
+                <thead>
+                  <tr>
+                    <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
+                    <th scope="col" role="columnheader" aria-sort="none">Credential Number <span class="sort-arrows"></span></th>
+                    <th scope="col" role="columnheader" aria-sort="none">License Type <span class="sort-arrows"></span></th>
+                    <th scope="col" role="columnheader" aria-sort="none">Status <span class="sort-arrows"></span></th>
+                    <th scope="col" role="columnheader">Controls</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Smith, John A</td>
+                    <td>CR-100234</td>
+                    <td>Professional Engineer</td>
+                    <td><span class="status-badge status-active">Active</span></td>
+                    <td>
+                      <a href="#" class="icon-button" aria-label="Select Individual">
+                        <img src="assets/select-icon.png" alt="" width="30" height="30">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Alvarez, Maria T</td>
+                    <td>CR-100567</td>
+                    <td>Fishing Guide Permit</td>
+                    <td><span class="status-badge status-active">Active</span></td>
+                    <td>
+                      <a href="#" class="icon-button" aria-label="Select Individual">
+                        <img src="assets/select-icon.png" alt="" width="30" height="30">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Bell, Robert</td>
+                    <td>CR-100812</td>
+                    <td>Wildlife Rehabilitator</td>
+                    <td><span class="status-badge status-expired">Expired</span></td>
+                    <td>
+                      <a href="#" class="icon-button" aria-label="Select Individual">
+                        <img src="assets/select-icon.png" alt="" width="30" height="30">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Nguyen, Linh</td>
+                    <td>CR-101045</td>
+                    <td>Real Estate Salesperson</td>
+                    <td><span class="status-badge status-inactive">Inactive</span></td>
+                    <td>
+                      <a href="#" class="icon-button" aria-label="Select Individual">
+                        <img src="assets/select-icon.png" alt="" width="30" height="30">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Carter, William J</td>
+                    <td>CR-101289</td>
+                    <td>Cosmetologist</td>
+                    <td><span class="status-badge status-active">Active</span></td>
+                    <td>
+                      <a href="#" class="icon-button" aria-label="Select Individual">
+                        <img src="assets/select-icon.png" alt="" width="30" height="30">
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -196,6 +299,32 @@
           input.placeholder = 'Business Name or Credential Number';
         }
       });
+    });
+
+    // Accordion functionality
+    document.querySelectorAll('.usa-accordion__button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        var content = document.getElementById(this.getAttribute('aria-controls'));
+
+        if (expanded) {
+          this.setAttribute('aria-expanded', 'false');
+          content.setAttribute('hidden', '');
+        } else {
+          this.setAttribute('aria-expanded', 'true');
+          content.removeAttribute('hidden');
+        }
+      });
+    });
+
+    // Search / Clear functionality
+    document.getElementById('subject-search-button').addEventListener('click', function () {
+      document.getElementById('individual-results').removeAttribute('hidden');
+    });
+
+    document.getElementById('subject-search-clear').addEventListener('click', function () {
+      document.getElementById('subject-search').value = '';
+      document.getElementById('individual-results').setAttribute('hidden', '');
     });
   </script>
 </body>
