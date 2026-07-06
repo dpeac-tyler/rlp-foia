@@ -1894,6 +1894,7 @@ select:focus {
 .usa-alert--info {
   background-color: #e7f6f8;
   border-left-color: #00bde3;
+  border-left-width: 0.8rem;
 }
 
 .usa-alert__body {
@@ -1946,13 +1947,14 @@ select:focus {
 }
 
 .usa-alert--info::before {
-  background-color: #00bde3;
+  background-color: #1b1b1b;
 }
 
 .usa-alert--info::after {
   content: "i";
-  left: 3rem;
-  font-style: italic;
+  left: 2.85rem;
+  font-style: normal;
+  font-weight: 700;
 }
 
 /* Field Level Error Styles */
