@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eligibility - RLP</title>
+  <!-- Custom RLP Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="header management">
+      <a class="usa-skipnav" href="#main-content">Skip to Main Content</a>
+
+      <header class="usa-header">
+        <div class="skinny-header-container">
+          <div class="grid-container">
+            <div class="welcome-agency usa-banner__header-text">
+              Welcome DNR! &nbsp;<a href="#"><u>Logout</u></a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="border-bottom-2px border-base-lighter">
+        <div class="grid-container navigation">
+          <div class="grid-row">
+            <div class="tablet:grid-col-6 logo-flex">
+              <a class="agency-logo-link" href="index.html">
+                <img src="assets/il-logo.png" alt="Illinois Department of Natural Resources agency logo"
+                  class="agency-logo">
+              </a>
+              <a class="agency-name-link" href="index.html">
+                <div class="agency-name">Illinois Department of Natural Resources</div>
+              </a>
+            </div>
+            <div class="tablet:grid-col-6">
+              <nav class="grid-container">
+                <div class="grid-row header--nav-links">
+                  <div class="tablet:grid-col nav__item">
+                    <a class="usa-link" href="index.html">
+                      <img src="assets/rlp-logo.png" alt="RLP logo" class="margin-right-1" height="30">Home
+                    </a>
+                  </div>
+                  <div class="tablet:grid-col-auto nav__item">
+                    <a class="usa-link" href="search.html">
+                      <svg aria-hidden="true" focusable="false"
+                        class="svg-inline--fa fa-magnifying-glass fa-xl margin-right-1" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+                        <path fill="currentColor"
+                          d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+                        </path>
+                      </svg>Search
+                    </a>
+                  </div>
+                  <div class="tablet:grid-col nav__item">
+                    <a class="usa-link" href="#" target="_blank">
+                      <svg aria-hidden="true" focusable="false" class="svg-inline--fa fa-life-ring fa-xl margin-right-1"
+                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30">
+                        <path fill="currentColor"
+                          d="M367.2 412.5C335.9 434.9 297.5 448 256 448s-79.9-13.1-111.2-35.5l58-58c15.8 8.6 34 13.5 53.3 13.5s37.4-4.9 53.3-13.5l58 58zm90.7 .8c33.8-43.4 54-98 54-157.3s-20.2-113.9-54-157.3c9-12.5 7.9-30.1-3.4-41.3S425.8 45 413.3 54C369.9 20.2 315.3 0 256 0S142.1 20.2 98.7 54c-12.5-9-30.1-7.9-41.3 3.4S45 86.2 54 98.7C20.2 142.1 0 196.7 0 256s20.2 113.9 54 157.3c-9 12.5-7.9 30.1 3.4 41.3S86.2 467 98.7 458c43.4 33.8 98 54 157.3 54s113.9-20.2 157.3-54c12.5 9 30.1 7.9 41.3-3.4s12.4-28.8 3.4-41.3zm-45.5-46.1l-58-58c8.6-15.8 13.5-34 13.5-53.3s-4.9-37.4-13.5-53.3l58-58C434.9 176.1 448 214.5 448 256s-13.1 79.9-35.5 111.2zM367.2 99.5l-58 58c-15.8-8.6-34-13.5-53.3-13.5s-37.4 4.9-53.3 13.5l-58-58C176.1 77.1 214.5 64 256 64s79.9 13.1 111.2 35.5zM157.5 309.3l-58 58C77.1 335.9 64 297.5 64 256s13.1-79.9 35.5-111.2l58 58c-8.6 15.8-13.5 34-13.5 53.3s4.9 37.4 13.5 53.3zM208 256a48 48 0 1 1 96 0 48 48 0 1 1 -96 0z">
+                        </path>
+                      </svg>Help
+                    </a>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-info-bar">
+      <div class="grid-container">
+        <div class="app-info-bar__grid">
+          <div>
+            <span class="app-info-bar__label">Application/Permit Name:</span>
+            <span class="app-info-bar__value">Application Builder Application</span>
+          </div>
+          <div>
+            <span class="app-info-bar__label">License/Application Type:</span>
+            <span class="app-info-bar__value">Application Builder : AP : Authenticated, Individual, Signature, Document Upload</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main id="main-content" class="grid-container">
+      <div class="usa-step-indicator margin-top-4" aria-label="progress">
+        <ol class="usa-step-indicator__segments">
+          <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
+            <span class="usa-step-indicator__segment-label">Application Details</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Applicant Information</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Question Builder</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Conditions</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Payment</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Preview</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">License</span>
+          </li>
+          <li class="usa-step-indicator__segment">
+            <span class="usa-step-indicator__segment-label">Notification</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="usa-step-indicator__header">
+        <h1 class="usa-step-indicator__heading">
+          <span class="usa-step-indicator__heading-counter">1</span>
+          <span class="usa-step-indicator__total-steps">of 8</span>
+          <span class="usa-step-indicator__heading-text">Application Details</span>
+        </h1>
+      </div>
+
+      <div class="margin-top-4 app-builder-container">
+        <!-- Left sidebar -->
+        <div class="app-builder-sidebar">
+          <div class="usa-step-indicator usa-step-indicator--sidebar" aria-label="step progress">
+            <ol class="usa-step-indicator__segments">
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+                <a class="usa-step-indicator__segment-label" href="start-application.html">Getting Started</a>
+              </li>
+              <div class="step-connector-line"></div>
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+                <a class="usa-step-indicator__segment-label" href="application-type.html">Application Type</a>
+              </li>
+              <div class="step-connector-line"></div>
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+                <a class="usa-step-indicator__segment-label" href="title-information.html">Title Information</a>
+              </li>
+              <div class="step-connector-line"></div>
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+                <a class="usa-step-indicator__segment-label" href="form-number-deactivation.html">Form No., Deactivation &amp; Search Terms</a>
+              </li>
+              <div class="step-connector-line"></div>
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+                <a class="usa-step-indicator__segment-label" href="task-management.html">Task Management</a>
+              </li>
+              <div class="step-connector-line"></div>
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--complete">
+                <a class="usa-step-indicator__segment-label" href="external-integration.html">External Integrations</a>
+              </li>
+              <div class="step-connector-line"></div>
+              <li class="usa-step-indicator__segment usa-step-indicator__segment--current">
+                <a class="usa-step-indicator__segment-label" href="eligibility.html">Eligibility</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Right content area -->
+        <div class="app-builder-content">
+          <h1 class="app-builder-content__heading">Eligibility</h1>
+
+          <p class="app-builder-content__text">
+            Configure the eligibility requirements applicants must meet before submitting this application.
+          </p>
+
+          <!-- Section 13: Prerequisite License -->
+          <div class="section-indicator" data-section="13">
+            <fieldset class="usa-fieldset">
+              <legend class="usa-label">Is a prerequisite license required for this application? <span class="field-required">Required</span></legend>
+              <div class="usa-radio">
+                <input class="usa-radio__input" id="prerequisite-license-yes" type="radio" name="prerequisite-license" value="yes">
+                <label class="usa-radio__label" for="prerequisite-license-yes">Yes</label>
+              </div>
+              <div class="usa-radio">
+                <input class="usa-radio__input" id="prerequisite-license-no" type="radio" name="prerequisite-license" value="no" checked>
+                <label class="usa-radio__label" for="prerequisite-license-no">No</label>
+              </div>
+            </fieldset>
+
+            <div id="prerequisite-details" hidden>
+              <div class="section-indicator section-indicator--small" data-section="1" style="background-color: #fff; padding: 2.4rem 2.4rem 2.4rem 5rem; border: 1px solid #dfe1e2; border-radius: 0.5rem; margin-top: 2rem;">
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin: 0 0 0.5rem 0;">Prerequisite</h3>
+                <p class="app-builder-content__text">Applicants must hold the selected prerequisite license before applying through this application. The system validates eligibility using the selected intra-affiliation.</p>
+
+                <div class="usa-form-group" style="margin-top: 1rem;">
+                  <label class="usa-label" for="prerequisite-select">Prerequisite <span class="field-required">Required</span></label>
+                  <select class="usa-select" id="prerequisite-select" name="prerequisite-select">
+                    <option value="">Please Select</option>
+                    <option value="firearm-business-license">Firearm Business License</option>
+                    <option value="professional-engineer">Professional Engineer</option>
+                    <option value="contractor-license">Contractor License</option>
+                    <option value="fishing-guide-permit">Fishing Guide Permit</option>
+                    <option value="wildlife-rehabilitation">Wildlife Rehabilitation</option>
+                  </select>
+                </div>
+
+                <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 2rem 0;">
+
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin: 0 0 0.5rem 0;">Eligible Status</h3>
+                <p class="app-builder-content__text">Specify the required status of the applicant's prerequisite license.</p>
+
+                <fieldset class="usa-fieldset margin-top-1">
+                  <legend class="usa-label">Status <span class="field-required">Required</span></legend>
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="eligible-status-active" type="radio" name="eligible-status" value="active">
+                    <label class="usa-radio__label" for="eligible-status-active">Active</label>
+                  </div>
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="eligible-status-any" type="radio" name="eligible-status" value="any">
+                    <label class="usa-radio__label" for="eligible-status-any">Any</label>
+                  </div>
+                </fieldset>
+
+                <hr style="border: none; border-top: 1px solid #dfe1e2; margin: 2rem 0;">
+
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin: 0 0 0.5rem 0;">Post-Issuance Action</h3>
+                <p class="app-builder-content__text">Specify what action the system should take on the prerequisite license after issuing the new license.</p>
+
+                <fieldset class="usa-fieldset margin-top-1">
+                  <legend class="usa-label">Post-Issuance <span class="field-required">Required</span></legend>
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="post-issuance-no-action" type="radio" name="post-issuance" value="no-action">
+                    <label class="usa-radio__label" for="post-issuance-no-action">No Action</label>
+                  </div>
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="post-issuance-end-prerequisite" type="radio" name="post-issuance" value="end-prerequisite">
+                    <label class="usa-radio__label" for="post-issuance-end-prerequisite">End Prerequisite License</label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="section-indicator section-indicator--small" data-section="2" style="background-color: #fff; padding: 2.4rem 2.4rem 2.4rem 5rem; border: 1px solid #dfe1e2; border-radius: 0.5rem; margin-top: 2rem;">
+                <h3 style="font-size: 1.8rem; font-weight: 700; margin: 0 0 0.5rem 0;">Expiration</h3>
+                <p class="app-builder-content__text">Choose how the end/expiration date for the credential will be calculated.</p>
+
+                <fieldset class="usa-fieldset margin-top-1">
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="expiration-type-fixed-date" type="radio" name="expiration-type" value="fixed-date">
+                    <label class="usa-radio__label" for="expiration-type-fixed-date">Fixed Date</label>
+                  </div>
+
+                  <div id="expiration-fixed-date-config" hidden style="margin: 2rem 0 1.5rem 2.7rem; background: #f0f0f0; padding: 2.4rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; align-items: end;">
+                      <div class="margin-bottom-2">
+                        <label class="usa-label" for="expiration-end-date">End Date <span class="field-required">Required</span></label>
+                        <div class="date-picker-wrapper">
+                          <input class="usa-input" id="expiration-end-date" name="expiration-end-date" type="text" placeholder="MM/DD/YYYY" required>
+                          <button type="button" class="date-picker-button" aria-label="Select date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                              <line x1="16" y1="2" x2="16" y2="6"></line>
+                              <line x1="8" y1="2" x2="8" y2="6"></line>
+                              <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="usa-checkbox margin-bottom-2">
+                        <!-- <label class="usa-label" style="visibility: hidden;">Recurring</label> -->
+                        <input class="usa-checkbox__input" id="expiration-recurring" type="checkbox" name="expiration-recurring">
+                        <label class="usa-checkbox__label" for="expiration-recurring" style="margin-top: -40px;">Recurring date of every year
+                          <span class="tooltip-wrapper">
+                            <span class="tooltip-icon" tabindex="0" aria-describedby="tooltip-recurring-date">?</span>
+                            <span class="tooltip-box" id="tooltip-recurring-date" role="tooltip">End Date is same date every year.</span>
+                          </span>
+                        </label>
+                      </div>
+                      <div class="usa-form-group margin-bottom-2" style="max-width: 250px;">
+                        <label class="usa-label" for="expiration-year-window">Add a year window <span class="field-required">Required</span>
+                          <span class="tooltip-wrapper">
+                            <span class="tooltip-icon" tabindex="0" aria-describedby="tooltip-year-window">?</span>
+                            <span class="tooltip-box" id="tooltip-year-window" role="tooltip">Based on the issuance date, the number of days prior to the recurring date to add a year to the end date. The number includes the recurring date, e.g. a 12/31 recurring date with 7 days results in the seven-day range 12/25-12/31.</span>
+                          </span>
+                        </label>
+                        <input class="usa-input" id="expiration-year-window" name="expiration-year-window" type="text" value="0">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="expiration-type-timeframe" type="radio" name="expiration-type" value="timeframe">
+                    <label class="usa-radio__label" for="expiration-type-timeframe">Timeframe</label>
+                  </div>
+
+                  <div id="expiration-timeframe-config" hidden style="margin: 2rem 0 1.5rem 2.7rem; background: #f0f0f0; padding: 2.4rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; align-items: end;">
+                      <div class="usa-form-group margin-bottom-2">
+                        <label class="usa-label" for="expiration-timeframe-number">Number <span class="field-required">Required</span></label>
+                        <input class="usa-input" id="expiration-timeframe-number" name="expiration-timeframe-number" type="text" required>
+                      </div>
+                      <div class="usa-form-group margin-bottom-2">
+                        <label class="usa-label" for="expiration-timeframe-period">Period <span class="field-required">Required</span></label>
+                        <select class="usa-select" id="expiration-timeframe-period" name="expiration-timeframe-period" required>
+                          <option value="">Please Select</option>
+                          <option value="years">Years</option>
+                          <option value="months">Months</option>
+                          <option value="days">Days</option>
+                        </select>
+                      </div>
+                      <div class="usa-checkbox margin-bottom-2" style="margin-bottom: 27px;">
+                        <input class="usa-checkbox__input" id="expiration-timeframe-end-of-month" type="checkbox" name="expiration-timeframe-end-of-month">
+                        <label class="usa-checkbox__label" for="expiration-timeframe-end-of-month">End of month
+                          <span class="tooltip-wrapper">
+                            <span class="tooltip-icon" tabindex="0" aria-describedby="tooltip-end-of-month">?</span>
+                            <span class="tooltip-box" id="tooltip-end-of-month" role="tooltip">Round and forward to last date of the month</span>
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="expiration-type-conditional-date" type="radio" name="expiration-type" value="conditional-date">
+                    <label class="usa-radio__label" for="expiration-type-conditional-date">Conditional Date</label>
+                  </div>
+
+                  <div id="expiration-conditional-date-config" hidden style="margin: 2rem 0 1.5rem 2.7rem; background: #f0f0f0; padding: 2.4rem;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; align-items: end;">
+                      <div class="margin-bottom-2">
+                        <label class="usa-label" for="expiration-cutoff-date">Cutoff Date <span class="field-required">Required</span></label>
+                        <div class="date-picker-wrapper">
+                          <input class="usa-input" id="expiration-cutoff-date" name="expiration-cutoff-date" type="text" placeholder="MM/DD/YYYY" required>
+                          <button type="button" class="date-picker-button" aria-label="Select date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                              <line x1="16" y1="2" x2="16" y2="6"></line>
+                              <line x1="8" y1="2" x2="8" y2="6"></line>
+                              <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="margin-bottom-2">
+                        <label class="usa-label" for="expiration-before-or-on-date">Before or On Date <span class="field-required">Required</span></label>
+                        <div class="date-picker-wrapper">
+                          <input class="usa-input" id="expiration-before-or-on-date" name="expiration-before-or-on-date" type="text" placeholder="MM/DD/YYYY" required>
+                          <button type="button" class="date-picker-button" aria-label="Select date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                              <line x1="16" y1="2" x2="16" y2="6"></line>
+                              <line x1="8" y1="2" x2="8" y2="6"></line>
+                              <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div class="margin-bottom-2">
+                        <label class="usa-label" for="expiration-after-date">After Date <span class="field-required">Required</span></label>
+                        <div class="date-picker-wrapper">
+                          <input class="usa-input" id="expiration-after-date" name="expiration-after-date" type="text" placeholder="MM/DD/YYYY" required>
+                          <button type="button" class="date-picker-button" aria-label="Select date">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                              <line x1="16" y1="2" x2="16" y2="6"></line>
+                              <line x1="8" y1="2" x2="8" y2="6"></line>
+                              <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="expiration-type-inherit-prerequisite" type="radio" name="expiration-type" value="inherit-prerequisite-expiration">
+                    <label class="usa-radio__label" for="expiration-type-inherit-prerequisite">Inherit Prerequisite License Expiration</label>
+                  </div>
+                  <div class="usa-radio">
+                    <input class="usa-radio__input" id="expiration-type-use-prerequisite-cycle" type="radio" name="expiration-type" value="use-prerequisite-cycle">
+                    <label class="usa-radio__label" for="expiration-type-use-prerequisite-cycle">Use Prerequisite License Cycle</label>
+                  </div>
+
+                  <div id="expiration-prerequisite-cycle-config" hidden style="margin: 2rem 0 1.5rem 2.7rem; background: #f0f0f0; padding: 2.4rem;">
+                    <p class="app-builder-content__text">The expiration is calculated from the prerequisite license issuance date. <strong>(prerequisite date + licensing term number = expiration date)</strong></p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: end; max-width: 66.666%;">
+                      <div class="usa-form-group margin-bottom-2">
+                        <label class="usa-label" for="expiration-cycle-term-number">Licensing Term Number <span class="field-required">Required</span></label>
+                        <input class="usa-input" id="expiration-cycle-term-number" name="expiration-cycle-term-number" type="text" required>
+                      </div>
+                      <div class="usa-form-group margin-bottom-2">
+                        <label class="usa-label" for="expiration-cycle-period">Period <span class="field-required">Required</span></label>
+                        <select class="usa-select" id="expiration-cycle-period" name="expiration-cycle-period" required>
+                          <option value="">Please Select</option>
+                          <option value="years">Years</option>
+                          <option value="months">Months</option>
+                          <option value="days">Days</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-builder-button-container">
+            <a href="external-integration.html" class="usa-button usa-button--outline">Back</a>
+            <a href="document-upload.html" class="usa-button">Next</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    var prerequisiteYes = document.getElementById('prerequisite-license-yes');
+    var prerequisiteDetails = document.getElementById('prerequisite-details');
+    document.querySelectorAll('input[name="prerequisite-license"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        prerequisiteDetails.hidden = !prerequisiteYes.checked;
+      });
+    });
+
+    var expirationFixedDate = document.getElementById('expiration-type-fixed-date');
+    var expirationFixedDateConfig = document.getElementById('expiration-fixed-date-config');
+    var expirationTimeframe = document.getElementById('expiration-type-timeframe');
+    var expirationTimeframeConfig = document.getElementById('expiration-timeframe-config');
+    var expirationConditionalDate = document.getElementById('expiration-type-conditional-date');
+    var expirationConditionalDateConfig = document.getElementById('expiration-conditional-date-config');
+    var expirationUsePrerequisiteCycle = document.getElementById('expiration-type-use-prerequisite-cycle');
+    var expirationPrerequisiteCycleConfig = document.getElementById('expiration-prerequisite-cycle-config');
+    document.querySelectorAll('input[name="expiration-type"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        expirationFixedDateConfig.hidden = !expirationFixedDate.checked;
+        expirationTimeframeConfig.hidden = !expirationTimeframe.checked;
+        expirationConditionalDateConfig.hidden = !expirationConditionalDate.checked;
+        expirationPrerequisiteCycleConfig.hidden = !expirationUsePrerequisiteCycle.checked;
+      });
+    });
+  </script>
+</body>
+
+</html>
