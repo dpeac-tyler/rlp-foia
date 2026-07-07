@@ -847,11 +847,12 @@ select:focus {
   color: #417505;
 }
 
-/* Yellow - Pending/Open, Assigned, Approved - Awaiting Payment */
+/* Yellow - Pending/Open, Assigned, Approved - Awaiting Payment, Collecting */
 .status-pending,
 .status-open,
 .status-assigned,
-.status-approved-awaiting-payment {
+.status-approved-awaiting-payment,
+.status-collecting {
   color: #8F5800;
 }
 
@@ -864,20 +865,22 @@ select:focus {
   color: #CD2026;
 }
 
-/* Dark Red - Expired/Revoked/Withdrawn/Decommissioned/Retired */
+/* Dark Red - Expired/Revoked/Withdrawn/Decommissioned/Retired, Exported */
 .status-expired,
 .status-revoked,
 .status-withdrawn,
 .status-decommissioned,
-.status-retired {
+.status-retired,
+.status-exported {
   color: #80252A;
 }
 
-/* Cool Blue - In Progress, Rejected for Resubmission/Inactive, In Cart */
+/* Cool Blue - In Progress, Rejected for Resubmission/Inactive, In Cart, Ready for Review */
 .status-in-progress,
 .status-rejected-for-resubmission,
 .status-inactive,
-.status-in-cart {
+.status-in-cart,
+.status-ready-for-review {
   color: #205493;
 }
 
@@ -895,8 +898,9 @@ select:focus {
   color: #13669A;
 }
 
-/* Gray - Archived */
-.status-archived {
+/* Gray - Archived, Closed */
+.status-archived,
+.status-closed {
   color: #5C5F66;
 }
 
