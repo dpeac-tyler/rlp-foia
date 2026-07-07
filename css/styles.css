@@ -3193,6 +3193,15 @@ a.usa-step-indicator__segment-label:hover {
   margin-bottom: 1.5rem;
 }
 
+/* Section heading (inside forms) */
+.section-heading {
+  font-size: 1.9rem;
+  font-weight: 700;
+  border-bottom: 2px solid #dfe1e2;
+  padding-bottom: 8px;
+  margin: 32px 0 16px;
+}
+
 /* Form Number / Application-Permit meta display */
 .fee-meta-row {
   display: grid;

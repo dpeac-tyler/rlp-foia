@@ -195,7 +195,7 @@
                 <a href="#" class="icon-button" aria-label="View Package">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Package">
+                <a href="create-foia-package.html?edit=FOIA-001" class="icon-button" aria-label="Edit Package">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -210,7 +210,7 @@
                 <a href="#" class="icon-button" aria-label="View Package">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Package">
+                <a href="create-foia-package.html?edit=FOIA-002" class="icon-button" aria-label="Edit Package">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -225,7 +225,7 @@
                 <a href="#" class="icon-button" aria-label="View Package">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Package">
+                <a href="create-foia-package.html?edit=FOIA-003" class="icon-button" aria-label="Edit Package">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -240,7 +240,7 @@
                 <a href="#" class="icon-button" aria-label="View Package">
                   <img src="assets/eye-icon.png" alt="" width="30" height="30">
                 </a>
-                <a href="#" class="icon-button" aria-label="Edit Package">
+                <a href="create-foia-package.html?edit=FOIA-004" class="icon-button" aria-label="Edit Package">
                   <img src="assets/edit-icon.png" alt="" width="30" height="30">
                 </a>
               </td>
@@ -289,41 +289,9 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', function () {
-      var stored = sessionStorage.getItem('newFoiaPackage');
-      if (!stored) return;
-      sessionStorage.removeItem('newFoiaPackage');
-      var data = JSON.parse(stored);
-
-      // Persistent info alert
-      document.getElementById('package-created-alert-text').textContent =
-        data.packageNumber + ' has been created for ' + data.subjectName +
-        ' and collection has been triggered. Records may take a few minutes to collect.';
-      document.getElementById('package-created-alert').removeAttribute('hidden');
-
-      // Add new row to the table
-      var tbody = document.querySelector('.usa-table tbody');
-      var row = document.createElement('tr');
-      row.innerHTML =
-        '<td>' + data.packageNumber + '</td>' +
-        '<td>' + data.subjectName + '</td>' +
-        '<td>' + data.subjectType + '</td>' +
-        '<td><span class="status-collecting">Collecting</span></td>' +
-        '<td>' + data.createdDate + '</td>' +
-        '<td style="white-space: nowrap;">' +
-          '<a href="#" class="icon-button" aria-label="View Package"><img src="assets/eye-icon.png" alt="" width="30" height="30"></a>' +
-          '<a href="#" class="icon-button" aria-label="Edit Package"><img src="assets/edit-icon.png" alt="" width="30" height="30"></a>' +
-        '</td>';
-      tbody.insertBefore(row, tbody.firstChild);
-
-      var rowCount = tbody.querySelectorAll('tr').length;
-      document.querySelector('.table-controls__left strong').textContent =
-        'Showing 1 - ' + rowCount + ' of ' + rowCount + ' Entries';
-
-      // Fly-in success notification
+    function showSuccessNotification(text) {
       var notification = document.getElementById('success-notification');
-      document.getElementById('success-notification-text').textContent =
-        'Package ' + data.packageNumber + ' created successfully.';
+      document.getElementById('success-notification-text').textContent = text;
       notification.removeAttribute('hidden');
 
       setTimeout(function () {
@@ -339,6 +307,58 @@
           notification.setAttribute('hidden', '');
         }, 400);
       }, 4000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var stored = sessionStorage.getItem('newFoiaPackage');
+      if (stored) {
+        sessionStorage.removeItem('newFoiaPackage');
+        var data = JSON.parse(stored);
+
+        // Persistent info alert
+        document.getElementById('package-created-alert-text').textContent =
+          data.packageNumber + ' has been created for ' + data.subjectName +
+          ' and collection has been triggered. Records may take a few minutes to collect.';
+        document.getElementById('package-created-alert').removeAttribute('hidden');
+
+        // Add new row to the table
+        var tbody = document.querySelector('.usa-table tbody');
+        var row = document.createElement('tr');
+        row.innerHTML =
+          '<td>' + data.packageNumber + '</td>' +
+          '<td>' + data.subjectName + '</td>' +
+          '<td>' + data.subjectType + '</td>' +
+          '<td><span class="status-collecting">Collecting</span></td>' +
+          '<td>' + data.createdDate + '</td>' +
+          '<td style="white-space: nowrap;">' +
+            '<a href="#" class="icon-button" aria-label="View Package"><img src="assets/eye-icon.png" alt="" width="30" height="30"></a>' +
+            '<a href="create-foia-package.html?edit=' + data.packageNumber + '" class="icon-button" aria-label="Edit Package"><img src="assets/edit-icon.png" alt="" width="30" height="30"></a>' +
+          '</td>';
+        tbody.insertBefore(row, tbody.firstChild);
+
+        var rowCount = tbody.querySelectorAll('tr').length;
+        document.querySelector('.table-controls__left strong').textContent =
+          'Showing 1 - ' + rowCount + ' of ' + rowCount + ' Entries';
+
+        showSuccessNotification('Package ' + data.packageNumber + ' created successfully.');
+        return;
+      }
+
+      var editedStored = sessionStorage.getItem('editedFoiaPackage');
+      if (editedStored) {
+        sessionStorage.removeItem('editedFoiaPackage');
+        var editedData = JSON.parse(editedStored);
+
+        document.querySelectorAll('.usa-table tbody tr').forEach(function (row) {
+          var cells = row.querySelectorAll('td');
+          if (cells.length && cells[0].textContent.trim() === editedData.packageNumber) {
+            cells[1].textContent = editedData.subjectName;
+            cells[2].textContent = editedData.subjectType;
+          }
+        });
+
+        showSuccessNotification('Package ' + editedData.packageNumber + ' updated successfully.');
+      }
     });
   </script>
 </body>

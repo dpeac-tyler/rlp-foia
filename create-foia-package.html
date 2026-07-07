@@ -98,13 +98,13 @@
             <a href="foia-packages.html" class="usa-breadcrumb__link">FOIA Packages</a>
           </li>
           <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-            <span>Create FOIA Package</span>
+            <span id="breadcrumb-current">Create FOIA Package</span>
           </li>
         </ol>
       </nav>
 
       <div class="profile-header">
-        <h1 class="profile-header__title">Create FOIA Package</h1>
+        <h1 class="profile-header__title" id="page-heading">Create FOIA Package</h1>
       </div>
 
       <div class="profile-content">
@@ -160,17 +160,27 @@
               </div>
             </div>
 
-            <div class="margin-bottom-4">
-              <label class="usa-label" for="subject-search" id="subject-search-label">Search for Individual</label>
-              <input class="usa-input" id="subject-search" name="subject-search" type="text" placeholder="Last Name, First Name or Credential Number">
+            <div class="margin-bottom-4" id="selected-subject-display" hidden>
+              <h2 class="section-heading" id="selected-subject-label">Selected Individual</h2>
+              <!-- <label class="usa-label" id="selected-subject-label">Selected Individual</label> -->
+              <div>
+                <span class="text-bold" id="selected-subject-name"></span>
+              </div>
+              <button type="button" class="usa-button usa-button--outline" id="change-selection-button" style="margin-top: 20px;">Edit</button>
             </div>
 
-            <div class="margin-top-2">
-              <button type="button" class="usa-button" id="subject-search-button">Search</button>
-              <button type="button" class="usa-button usa-button--outline" id="subject-search-clear">Clear</button>
-            </div>
+            <div id="subject-search-section" hidden>
+              <div class="margin-bottom-4">
+                <label class="usa-label" for="subject-search" id="subject-search-label">Search for Individual</label>
+                <input class="usa-input" id="subject-search" name="subject-search" type="text" placeholder="Last Name, First Name or Credential Number">
+              </div>
 
-            <div id="individual-results" style="margin-top: 20px;" hidden>
+              <div class="margin-top-2">
+                <button type="button" class="usa-button" id="subject-search-button">Search</button>
+                <button type="button" class="usa-button usa-button--outline" id="subject-search-clear">Clear</button>
+              </div>
+
+              <div id="individual-results" style="margin-top: 20px;" hidden>
               <div class="usa-accordion usa-accordion--bordered">
                 <h3 class="usa-accordion__heading">
                   <button type="button" class="usa-accordion__button" aria-expanded="false" aria-controls="individual-results-icon-key-content">
@@ -274,7 +284,28 @@
             </div>
           </div>
         </div>
+
+        <div class="margin-bottom-4" id="affiliated-subjects-inline" hidden>
+          <h2 class="section-heading">Affiliated Subjects</h2>
+          <p class="margin-bottom-2">Affiliations outside the date range are unchecked by default.</p>
+          <p id="affiliated-subjects-inline-empty" hidden>No affiliations found for this individual.</p>
+          <div id="affiliated-subjects-inline-results" style="max-height: 320px; overflow-y: auto; border: 1px solid #dfe1e2;">
+            <table class="usa-table usa-table--borderless usa-table--striped" style="width: 100%; margin: 0;">
+              <thead>
+                <tr>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Select</th>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Affiliated Subject</th>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Relationship</th>
+                  <th scope="col" style="position: sticky; top: 0; background: #fff; z-index: 1;">Active Dates</th>
+                </tr>
+              </thead>
+              <tbody id="affiliated-subjects-inline-tbody"></tbody>
+            </table>
+          </div>
+          <p class="margin-top-2 margin-0"><strong id="affiliated-subjects-inline-selected-count">0 Affiliations Selected</strong></p>
+        </div>
       </div>
+    </div>
 
       <div class="margin-top-2">
         <button type="button" class="usa-button" id="save-button">Save</button>
@@ -323,12 +354,146 @@
         </div>
       </div>
     </div>
+
+    <!-- Edit Individual/Business Modal -->
+    <div id="edit-subject-search-modal" class="modal" hidden>
+      <div class="modal-overlay"></div>
+      <div class="modal-content" style="max-width: 1000px;">
+        <div class="modal-header">
+          <h2 class="modal-title">Edit Individual/Business</h2>
+          <button type="button" class="modal-close" aria-label="Close modal" id="edit-subject-search-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="margin-bottom-4">
+            <label class="usa-label" for="edit-subject-search-input" id="edit-subject-search-label">Search for Individual</label>
+            <input class="usa-input" id="edit-subject-search-input" name="edit-subject-search-input" type="text" placeholder="Last Name, First Name or Credential Number">
+          </div>
+
+          <div class="margin-top-2">
+            <button type="button" class="usa-button" id="edit-subject-search-btn">Search</button>
+            <button type="button" class="usa-button usa-button--outline" id="edit-subject-search-clear-btn">Clear</button>
+          </div>
+
+          <div id="edit-subject-search-results" style="margin-top: 20px;" hidden>
+            <div class="usa-accordion usa-accordion--bordered">
+              <h3 class="usa-accordion__heading">
+                <button type="button" class="usa-accordion__button" aria-expanded="false" aria-controls="edit-subject-search-icon-key-content">
+                  Icon Key
+                </button>
+              </h3>
+              <div id="edit-subject-search-icon-key-content" class="usa-accordion__content usa-prose" hidden>
+                <p class="text-bold margin-0 margin-bottom-2">Options and Control Types</p>
+                <div class="icon-key-grid">
+                  <div class="icon-key-item">
+                    <img src="assets/select-icon.png" alt="" width="24" height="24">
+                    <span>- Select Individual</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-controls margin-top-2">
+              <div class="table-controls__left">
+                <strong>Showing 1 - 5 of 5 Entries</strong>
+              </div>
+              <div class="table-controls__right">
+                <label for="edit-subject-search-entries-per-page" class="table-controls__label">Show</label>
+                <select class="usa-select table-controls__select" id="edit-subject-search-entries-per-page" name="edit-subject-search-entries-per-page">
+                  <option value="100" selected>100</option>
+                  <option value="50">50</option>
+                  <option value="25">25</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
+
+            <table class="usa-table usa-table--borderless usa-table--striped">
+              <thead>
+                <tr>
+                  <th scope="col" role="columnheader" aria-sort="none">Constituent Name <span class="sort-arrows"></span></th>
+                  <th scope="col" role="columnheader" aria-sort="none">Credential Number <span class="sort-arrows"></span></th>
+                  <th scope="col" role="columnheader" aria-sort="none">License Type <span class="sort-arrows"></span></th>
+                  <th scope="col" role="columnheader" aria-sort="none">Status <span class="sort-arrows"></span></th>
+                  <th scope="col" role="columnheader">Controls</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Smith, John A</td>
+                  <td>CR-100234</td>
+                  <td>Professional Engineer</td>
+                  <td><span class="status-badge status-active">Active</span></td>
+                  <td>
+                    <a href="#" class="icon-button edit-subject-select-btn" data-subject-name="Smith, John A" aria-label="Select Individual">
+                      <img src="assets/select-icon.png" alt="" width="30" height="30">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Alvarez, Maria T</td>
+                  <td>CR-100567</td>
+                  <td>Fishing Guide Permit</td>
+                  <td><span class="status-badge status-active">Active</span></td>
+                  <td>
+                    <a href="#" class="icon-button edit-subject-select-btn" data-subject-name="Alvarez, Maria T" aria-label="Select Individual">
+                      <img src="assets/select-icon.png" alt="" width="30" height="30">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Bell, Robert</td>
+                  <td>CR-100812</td>
+                  <td>Wildlife Rehabilitator</td>
+                  <td><span class="status-badge status-expired">Expired</span></td>
+                  <td>
+                    <a href="#" class="icon-button edit-subject-select-btn" data-subject-name="Bell, Robert" aria-label="Select Individual">
+                      <img src="assets/select-icon.png" alt="" width="30" height="30">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Nguyen, Linh</td>
+                  <td>CR-101045</td>
+                  <td>Real Estate Salesperson</td>
+                  <td><span class="status-badge status-inactive">Inactive</span></td>
+                  <td>
+                    <a href="#" class="icon-button edit-subject-select-btn" data-subject-name="Nguyen, Linh" aria-label="Select Individual">
+                      <img src="assets/select-icon.png" alt="" width="30" height="30">
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Carter, William J</td>
+                  <td>CR-101289</td>
+                  <td>Cosmetologist</td>
+                  <td><span class="status-badge status-active">Active</span></td>
+                  <td>
+                    <a href="#" class="icon-button edit-subject-select-btn" data-subject-name="Carter, William J" aria-label="Select Individual">
+                      <img src="assets/select-icon.png" alt="" width="30" height="30">
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="usa-button usa-button--secondary" id="edit-subject-search-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
     document.querySelectorAll('input[name="subject-type"]').forEach(function (radio) {
       radio.addEventListener('change', function () {
         document.getElementById('search-context-fields').removeAttribute('hidden');
+        document.getElementById('subject-search-section').removeAttribute('hidden');
 
         var label = document.getElementById('subject-search-label');
         var input = document.getElementById('subject-search');
@@ -384,7 +549,10 @@
         { name: 'Nguyen, Thu', relationship: 'Subordinate', activeDates: '09/01/2020 - 12/31/2023' },
         { name: 'Nguyen Family Trust', relationship: 'Superior', activeDates: '02/20/2017 - present' }
       ],
-      'Carter, William J': []
+      'Carter, William J': [],
+      'Ridgeline Construction LLC': [
+        { name: 'Ridgeline Holdings Group', relationship: 'Superior', activeDates: '03/01/2022 - present' }
+      ]
     };
 
     var affiliatedSubjectsModal = document.getElementById('affiliated-subjects-modal');
@@ -485,6 +653,61 @@
       affiliatedSubjectsModal.setAttribute('hidden', '');
     }
 
+    // Inline Affiliated Subjects (Edit mode)
+    var editMode = false;
+
+    function updateInlineSelectedCount() {
+      var count = document.querySelectorAll('.affiliation-checkbox-inline:checked').length;
+      document.getElementById('affiliated-subjects-inline-selected-count').textContent =
+        count === 1 ? '1 Affiliation Selected' : count + ' Affiliations Selected';
+    }
+
+    function renderInlineAffiliatedSubjects(subjectName) {
+      var fromVal = document.getElementById('date-range-from').value.trim();
+      var toVal = document.getElementById('date-range-to').value.trim();
+      var fromDate = parseDate(fromVal);
+      var toDate = parseDate(toVal);
+
+      var affiliations = affiliationsData[subjectName] || [];
+      var tbody = document.getElementById('affiliated-subjects-inline-tbody');
+      var resultsWrap = document.getElementById('affiliated-subjects-inline-results');
+      var emptyEl = document.getElementById('affiliated-subjects-inline-empty');
+      tbody.innerHTML = '';
+
+      if (affiliations.length === 0) {
+        resultsWrap.setAttribute('hidden', '');
+        emptyEl.removeAttribute('hidden');
+      } else {
+        emptyEl.setAttribute('hidden', '');
+        resultsWrap.removeAttribute('hidden');
+
+        affiliations.forEach(function (affiliation, i) {
+          var inRange = isAffiliationInRange(affiliation.activeDates, fromDate, toDate);
+          var row = document.createElement('tr');
+          row.innerHTML =
+            '<td><input type="checkbox" class="affiliation-checkbox-inline" data-index="' + i + '" aria-label="Select ' + affiliation.name + '"' + (inRange ? ' checked' : '') + ' style="width: 1.8rem; height: 1.8rem; cursor: pointer;"></td>' +
+            '<td>' + affiliation.name + '</td>' +
+            '<td>' + affiliation.relationship + '</td>' +
+            '<td>' + affiliation.activeDates + '</td>';
+          tbody.appendChild(row);
+        });
+
+        document.querySelectorAll('.affiliation-checkbox-inline').forEach(function (checkbox) {
+          checkbox.addEventListener('change', updateInlineSelectedCount);
+        });
+      }
+
+      updateInlineSelectedCount();
+      document.getElementById('affiliated-subjects-inline').removeAttribute('hidden');
+    }
+
+    function showSelectedSubject(name, subjectType) {
+      document.getElementById('selected-subject-label').textContent = 'Selected ' + subjectType;
+      document.getElementById('selected-subject-name').textContent = name;
+      document.getElementById('selected-subject-display').removeAttribute('hidden');
+      document.getElementById('subject-search-section').setAttribute('hidden', '');
+    }
+
     document.querySelectorAll('.select-individual-btn').forEach(function (link) {
       link.addEventListener('click', function (e) {
         e.preventDefault();
@@ -496,6 +719,52 @@
     document.getElementById('affiliated-subjects-close').addEventListener('click', closeAffiliatedSubjectsModal);
     document.getElementById('affiliated-subjects-cancel').addEventListener('click', closeAffiliatedSubjectsModal);
     affiliatedSubjectsModal.querySelector('.modal-overlay').addEventListener('click', closeAffiliatedSubjectsModal);
+
+    // Edit Individual/Business modal (search to change the selected subject)
+    var editSubjectSearchModal = document.getElementById('edit-subject-search-modal');
+
+    function closeEditSubjectSearchModal() {
+      editSubjectSearchModal.setAttribute('hidden', '');
+    }
+
+    document.getElementById('change-selection-button').addEventListener('click', function () {
+      var subjectTypeRadio = document.querySelector('input[name="subject-type"]:checked');
+      var isBusiness = subjectTypeRadio && subjectTypeRadio.value === 'business';
+
+      document.getElementById('edit-subject-search-label').textContent = isBusiness ? 'Search for Business' : 'Search for Individual';
+      document.getElementById('edit-subject-search-input').placeholder = isBusiness ? 'Business Name or Credential Number' : 'Last Name, First Name or Credential Number';
+      document.getElementById('edit-subject-search-input').value = '';
+      document.getElementById('edit-subject-search-results').setAttribute('hidden', '');
+
+      editSubjectSearchModal.removeAttribute('hidden');
+    });
+
+    document.getElementById('edit-subject-search-btn').addEventListener('click', function () {
+      document.getElementById('edit-subject-search-results').removeAttribute('hidden');
+    });
+
+    document.getElementById('edit-subject-search-clear-btn').addEventListener('click', function () {
+      document.getElementById('edit-subject-search-input').value = '';
+      document.getElementById('edit-subject-search-results').setAttribute('hidden', '');
+    });
+
+    document.querySelectorAll('.edit-subject-select-btn').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var subjectName = this.getAttribute('data-subject-name');
+        var subjectTypeRadio = document.querySelector('input[name="subject-type"]:checked');
+        currentSubjectName = subjectName;
+        currentSubjectType = (subjectTypeRadio && subjectTypeRadio.value === 'business') ? 'Business' : 'Individual';
+
+        showSelectedSubject(subjectName, currentSubjectType);
+        renderInlineAffiliatedSubjects(subjectName);
+        closeEditSubjectSearchModal();
+      });
+    });
+
+    document.getElementById('edit-subject-search-close').addEventListener('click', closeEditSubjectSearchModal);
+    document.getElementById('edit-subject-search-cancel').addEventListener('click', closeEditSubjectSearchModal);
+    editSubjectSearchModal.querySelector('.modal-overlay').addEventListener('click', closeEditSubjectSearchModal);
 
     // Create Package
     document.getElementById('create-package-btn').addEventListener('click', function () {
@@ -517,6 +786,52 @@
 
       window.location.href = 'foia-packages.html';
     });
+
+    // Edit mode
+    var editPackageData = {
+      'FOIA-001': { subjectType: 'individual', subjectName: 'Smith, John A', dateFrom: '01/01/2021', dateTo: '' },
+      'FOIA-002': { subjectType: 'business', subjectName: 'Ridgeline Construction LLC', dateFrom: '03/01/2022', dateTo: '' },
+      'FOIA-003': { subjectType: 'individual', subjectName: 'Alvarez, Maria T', dateFrom: '01/10/2018', dateTo: '01/10/2023' },
+      'FOIA-004': { subjectType: 'individual', subjectName: 'Bell, Robert', dateFrom: '', dateTo: '' }
+    };
+
+    document.getElementById('save-button').addEventListener('click', function () {
+      if (!editMode) return;
+
+      sessionStorage.setItem('editedFoiaPackage', JSON.stringify({
+        packageNumber: this.getAttribute('data-package-number'),
+        subjectName: currentSubjectName,
+        subjectType: currentSubjectType
+      }));
+
+      window.location.href = 'foia-packages.html';
+    });
+
+    (function initEditMode() {
+      var packageNumber = new URLSearchParams(window.location.search).get('edit');
+      var data = editPackageData[packageNumber];
+      if (!data) return;
+
+      editMode = true;
+      currentSubjectName = data.subjectName;
+      currentSubjectType = data.subjectType === 'business' ? 'Business' : 'Individual';
+
+      document.title = 'Edit FOIA Package - RLP';
+      document.getElementById('page-heading').textContent = 'Edit FOIA Package';
+      document.getElementById('breadcrumb-current').textContent = 'Edit FOIA Package';
+
+      var radio = document.getElementById('subject-type-' + data.subjectType);
+      radio.checked = true;
+      radio.dispatchEvent(new Event('change'));
+
+      document.getElementById('date-range-from').value = data.dateFrom;
+      document.getElementById('date-range-to').value = data.dateTo;
+
+      showSelectedSubject(data.subjectName, currentSubjectType);
+      renderInlineAffiliatedSubjects(data.subjectName);
+
+      document.getElementById('save-button').setAttribute('data-package-number', packageNumber);
+    })();
   </script>
 </body>
 </html>
